@@ -26,6 +26,16 @@ namespace Password_Validation
             // look at each individual character in the str 
             // and increment the count if that char is uppercase
 
+            //tests each character in string, and 
+            //if IsUpper returns true for a letter, increment upperCase
+            foreach (char ch in str)
+            {
+                if (char.IsUpper(ch))
+                {
+                    upperCase++;
+                }
+            }
+
             // Return the number of uppercase characters.
             return upperCase;
         }
@@ -38,6 +48,15 @@ namespace Password_Validation
 
             // Count the lowercase characters in str.
 
+            //tests each character in string, and 
+            //if IsLower returns true for a letter, increment lowerCase
+            foreach (char ch in str)
+            {
+                if (char.IsLower(ch))
+                {
+                    lowerCase++;
+                }
+            }
 
             // Return the number of lowercase characters.
             return lowerCase;
@@ -51,6 +70,15 @@ namespace Password_Validation
 
             // Count the digits in str.
 
+            //tests each character in string, and 
+            //if IsDigit returns true for a literal, increment digits
+            foreach (char ch in str)
+            {
+                if (char.IsDigit(ch))
+                {
+                    digits++;
+                }
+            }
 
             // Return the number of digits.
             return digits;
@@ -64,16 +92,21 @@ namespace Password_Validation
             string password = passwordTextBox.Text;
 
             // Validate the password.
-            if (true)
+            if (password.Length >= MIN_LENGTH &&
+                NumberUpperCase(password) >= 1 &&
+                NumberLowerCase(password) >= 1 &&
+                NumberDigits(password) >= 1)
             {
-                MessageBox.Show("The password is valid.");
+                // Validate the password.
+                    MessageBox.Show("The password is valid.");
             }
             else
             {
                 MessageBox.Show("The password does not meet " +
-                    "the requirements.");
+                "the requirements.");
             }
         }
+
 
         private void exitButton_Click(object sender, EventArgs e)
         {

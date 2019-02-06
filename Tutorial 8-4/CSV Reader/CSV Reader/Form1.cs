@@ -24,9 +24,15 @@ namespace CSV_Reader
 
             // Calculate the total of the
             // test score tokens.
+            //increments through each score in scores array and adds score to running total
+            foreach (int score in scores)
+            {
+                total += score;
+            }
 
             // Calculate the average of these
             // test scores.
+            average = (double)total / scores.Length;
             return average;
         }
 
@@ -37,6 +43,8 @@ namespace CSV_Reader
                 StreamReader inputFile;  // To read the file
                 string line;             // To hold a line from the file
                 double average = 0;          // Test score average
+                int count; 
+                int student = 1; //counter later used for the string building operation for listBox
 
                 // Create a delimiter array.
                 char[] delim = { ',' };
@@ -47,14 +55,27 @@ namespace CSV_Reader
                 while (!inputFile.EndOfStream)
                 {
                     // Read a line from the file.
+                    line = inputFile.ReadLine();
 
                     // Get the test scores as tokens.
+                    //declare array to hold tokens, split line string and add delimiter to end of each item
+                    string[] tokens = line.Split(delim);
 
-                    // calculate the average by calling the method Average
+                    //declare new array of ints the size of the tokens array
+                    int[] scores = new int[tokens.Length];
 
-                    // Display the average.
-                    averagesListBox.Items.Add("The average for student " +
-                        count + " is " + average.ToString("n1"));
+                    for (count = 0; count < tokens.Length; count++)
+                    {
+                        //parse elements from string array into scores array
+                        scores[count] = int.Parse(tokens[count]);
+                    }
+                        // calculate the average by calling the method Average on scores array
+                        average = Average(scores);
+
+                        // Display the average.
+                        averagesListBox.Items.Add("The average for student " +
+                            student + " is " + average.ToString("n1"));
+                    student++;
                 }
 
                 // Close the file.
