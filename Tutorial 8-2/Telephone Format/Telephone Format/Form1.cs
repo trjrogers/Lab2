@@ -65,8 +65,8 @@ namespace Telephone_Format
         private void TelephoneFormat(ref string str)
         {
             //inserts hyphen at indexes 4 and 8 to format into phone number
-            str = str.Insert(4, "-");
-            str = str.Insert(8, "-");
+            str = str.Insert(3, "-");
+            str = str.Insert(7, "-");
         }
 
         private void formatButton_Click(object sender, EventArgs e)
